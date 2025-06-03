@@ -7,7 +7,7 @@ import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Development from './pages/Development';
-import Contact from './pages/Contact';
+import Contact from './pages/contact';
 // ... other pages
 
 const App = () => {
