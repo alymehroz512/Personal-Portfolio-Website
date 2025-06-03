@@ -1,20 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar'; // <-- updated from Sidebar to Navbar
 import Home from './pages/Home';
 import About from './pages/About';
 import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import Development from './pages/Development';
-import Contact from './pages/contact';
-// ... other pages
+import Contact from './pages/Contact';
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Sidebar />}>
+        <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="skills" element={<Skills />} />
@@ -22,7 +21,7 @@ const App = () => {
           <Route path="projects" element={<Projects />} />
           <Route path="tools" element={<Development />} />
           <Route path="contact" element={<Contact />} />
-          {/* Add other routes here */}
+          {/* Add more routes as needed */}
         </Route>
       </Routes>
     </Router>

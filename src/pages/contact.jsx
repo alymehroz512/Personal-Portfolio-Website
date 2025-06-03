@@ -7,15 +7,12 @@ import {
   faPaperPlane, 
   faSpinner,
   faMapMarkerAlt,
-  faPhone
+  faPhone,
+  faHeart
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import emailjs from '@emailjs/browser';
-import { 
-  SkeletonContactCard, 
-  SkeletonSocialLink, 
-  SkeletonContactForm 
-} from '../components/SkeletonLoader';
+import { SkeletonSocialLink } from '../components/SkeletonLoader';
 
 const skeletonStyles = {
   animation: 'shimmer 2s infinite linear',
@@ -129,53 +126,6 @@ export default function Contact() {
     }
   ];
 
-  const SkeletonContactCard = () => (
-    <div className="contact-info-card" style={{ borderRadius: '0%' }}>
-      <div className="info-icon" style={{ 
-        width: '50px',
-        height: '50px',
-        borderRadius: '50%',
-        backgroundColor: 'rgba(117, 93, 197, 0.1)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '1rem'
-      }}>
-        <div style={{
-          width: '30px',
-          height: '30px',
-          borderRadius: '50%',
-          ...skeletonStyles
-        }}></div>
-      </div>
-      <div className="info-details">
-        <div style={{ ...skeletonStyles, height: '24px', width: '60%', marginBottom: '8px' }}></div>
-        <div style={{ ...skeletonStyles, height: '18px', width: '80%', marginBottom: '8px' }}></div>
-        <div style={{ ...skeletonStyles, height: '16px', width: '40%' }}></div>
-      </div>
-    </div>
-  );
-
-  const SkeletonSocialLink = () => (
-    <div className="social-link" style={{
-      width: '50px',
-      height: '50px',
-      borderRadius: '50%',
-      backgroundColor: 'rgba(117, 93, 197, 0.1)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '0 0.75rem'
-    }}>
-      <div style={{
-        width: '30px',
-        height: '30px',
-        borderRadius: '50%',
-        ...skeletonStyles
-      }}></div>
-    </div>
-  );
-
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 p-md-5 p-3">
       <div className="home-container card p-md-5 p-3" style={{ width: '100%', maxWidth: '100%' }}>
@@ -183,29 +133,84 @@ export default function Contact() {
         <hr className="title-hr" />
         <p className="home-description">Let's collaborate and build something extraordinary together</p>
 
-        <div className="contact-grid mt-4">
-          <div className="contact-info-container">
-            <div className="info-header">
-              <h2>Get in Touch</h2>
-              <p>Feel free to reach out through any of these channels</p>
-            </div>
-
-            {loading ? (
-              <>
-                <div className="info-cards">
-                  <SkeletonContactCard /> 
-                  <SkeletonContactCard />
-                  <SkeletonContactCard />
+        <div className="contact-container">
+          {loading ? (
+            <div className="contact-content">
+              <div className="contact-info-section">
+                <div className="info-header">
+                  <h2>Get in Touch</h2>
+                  <p>Feel free to reach out through any of these channels or send a message below</p>
                 </div>
-
+                <div className="info-cards">
+                  {contactInfo.map((info) => (
+                    <div key={info.id} className="contact-info-card" style={{ borderRadius: '0%' }}>
+                      <div
+                        className="skeleton-icon"
+                        style={{ ...skeletonStyles, width: '40px', height: '40px', borderRadius: '50%', marginRight: '1rem' }}
+                      ></div>
+                      <div className="info-details">
+                        <div
+                          className="skeleton-title"
+                          style={{ ...skeletonStyles, height: '20px', width: '100px', marginBottom: '0.5rem' }}
+                        ></div>
+                        <div
+                          className="skeleton-value"
+                          style={{ ...skeletonStyles, height: '20px', width: '60%', marginBottom: '0.5rem' }}
+                        ></div>
+                        {info.description && (
+                          <div
+                            className="skeleton-description"
+                            style={{ ...skeletonStyles, height: '18px', width: '80%' }}
+                          ></div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="contact-form-section">
+                <div className="form-header">
+                  <h2>Send Message</h2>
+                  <p>Have a project in mind? Let's discuss it.</p>
+                </div>
+                <div className="contact-form">
+                  <div className="form-group">
+                    <div className="input-wrapper">
+                      <FontAwesomeIcon icon={faUser} className="input-icon" />
+                      <div className="skeleton-input" style={{ ...skeletonStyles, height: '48px', width: '100%' }}></div>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="input-wrapper">
+                      <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+                      <div className="skeleton-input" style={{ ...skeletonStyles, height: '48px', width: '100%' }}></div>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="input-wrapper">
+                      <FontAwesomeIcon icon={faMessage} className="input-icon" />
+                      <div className="skeleton-input" style={{ ...skeletonStyles, height: '280px', width: '100%' }}></div>
+                    </div>
+                  </div>
+                  <button className="custom-btn" disabled>
+                    Send Message
+                    <FontAwesomeIcon icon={faPaperPlane} className="ms-2" />
+                  </button>
+                </div>
                 <div className="social-links text-center justify-content-center">
                   <SkeletonSocialLink />
                   <SkeletonSocialLink />
                   <SkeletonSocialLink />
                 </div>
-              </>
-            ) : (
-              <>
+              </div>
+            </div>
+          ) : (
+            <div className="contact-content">
+              <div className="contact-info-section">
+                <div className="info-header">
+                  <h2>Get in Touch</h2>
+                  <p>Feel free to reach out through any of these channels or send a message below</p>
+                </div>
                 <div className="info-cards">
                   {contactInfo.map((info) => (
                     <div key={info.id} className="contact-info-card" style={{ borderRadius: '0%' }}>
@@ -228,7 +233,79 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
-
+              </div>
+              <div className="contact-form-section">
+                <div className="form-header">
+                  <h2>Send Message</h2>
+                  <p>Have a project in mind? Let's discuss it.</p>
+                </div>
+                <form onSubmit={sendGmail} className="contact-form">
+                  <div className="form-group">
+                    <div className="input-wrapper">
+                      <FontAwesomeIcon icon={faUser} className="input-icon" />
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="input-wrapper">
+                      <FontAwesomeIcon icon={faEnvelope} className="input-icon" />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <div className="input-wrapper">
+                      <FontAwesomeIcon 
+                        icon={faMessage} 
+                        className="input-icon" 
+                      />
+                      <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        required
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        style={{ 
+                          height: '280px',
+                          resize: 'none',
+                          borderRadius: '0%',
+                          paddingTop: '12px',
+                          paddingLeft: '45px'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className="custom-btn"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <FontAwesomeIcon icon={faSpinner} className="spinner" />
+                        <p style={{ margin: 0, marginLeft: '8px', display: 'inline-block' }}>Sending...</p>
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <FontAwesomeIcon icon={faPaperPlane} className="ms-2" />
+                      </>
+                    )}
+                  </button>
+                </form>
                 <div className="social-links text-center justify-content-center">
                   {socialLinks.map((social) => (
                     <a
@@ -245,99 +322,21 @@ export default function Contact() {
                     </a>
                   ))}
                 </div>
-              </>
-            )}
-          </div>
-
-          <div className="contact-form-container">
-            <div className="form-header">
-              <h2>Send Message</h2>
-              <p>Have a project in mind? Let's discuss it.</p>
+              </div>
             </div>
+          )}
+        </div>
 
-            {loading ? (
-              <SkeletonContactForm />
-            ) : (
-              <form onSubmit={sendGmail} className="contact-form">
-                <div className="form-group">
-                  <div className="input-wrapper">
-                    <FontAwesomeIcon icon={faUser} className="input-icon mt-1" />
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Your Name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
+        <footer className="contact-footer text-center mt-4">
+          Copyright © 2025 All rights reserved | Made with <FontAwesomeIcon icon={faHeart} className="heart-icon" /> by Ali Mehroz
+        </footer>
 
-                <div className="form-group">
-                  <div className="input-wrapper">
-                    <FontAwesomeIcon icon={faEnvelope} className="input-icon mt-1" />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Your Email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <div className="input-wrapper">
-                    <FontAwesomeIcon 
-                      icon={faMessage} 
-                      className="input-icon mt-1"  
-                    />
-                    <textarea
-                      name="message"
-                      placeholder="Your Message"
-                      required
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      style={{ 
-                        height: '280px',
-                        resize: 'none',
-                        borderRadius: '0%',
-                        paddingTop: '12px',
-                        paddingLeft: '45px'
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="submit"
-                  className="custom-btn"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <FontAwesomeIcon icon={faSpinner} className="spinner" /> 
-                      <p style={{ margin: 0, marginLeft: '8px', display: 'inline-block' }}>Sending...</p>
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <FontAwesomeIcon icon={faPaperPlane} className="ms-2" />
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+        {notification && (
+          <div className={`notification ${notification.type}`}>
+            {notification.message}
           </div>
-        </div>
+        )}
       </div>
-
-      {notification && (
-        <div className={`notification ${notification.type}`}>
-          {notification.message}
-        </div>
-      )}
     </div>
   );
 }

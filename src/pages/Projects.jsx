@@ -14,16 +14,13 @@ import {
 import { 
   faChartLine,
   faGears,
-  faCodeBranch,
   faListCheck,
   faLayerGroup,
   faFlask,
-  faArrowUpRightFromSquare,
   faCircleCheck,
   faSpinner,
   faShareNodes,
   faArrowRight,
-  faCode,
   faUser,
   faGamepad,
   faDatabase,
@@ -37,28 +34,6 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
 
   // Add styles at the top of the component
-  const skeletonStyles = {
-    '@keyframes pulse': {
-      '0%': { opacity: 0.6 },
-      '50%': { opacity: 0.8 },
-      '100%': { opacity: 0.6 }
-    },
-    '.skeleton-tech-badge': {
-      backgroundColor: '#e0e0e0',
-      animation: 'pulse 1.5s infinite',
-      margin: '4px',
-      display: 'flex',
-      alignItems: 'center',
-      padding: '6px 12px'
-    },
-    '.skeleton-view-all-button': {
-      width: '280px',
-      height: '52px',
-      backgroundColor: '#e0e0e0',
-      animation: 'pulse 1.5s infinite',
-      display: 'inline-block'
-    }
-  };
 
   // Add style tag to the component
   useEffect(() => {

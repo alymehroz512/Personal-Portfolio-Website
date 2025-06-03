@@ -61,7 +61,7 @@ const Development = () => {
 
     // Create staggered loading effects for each tool
     developmentTools.forEach(section => {
-      section.tools.forEach((tool, index) => {
+      section.tools.forEach((tool) => {
         const delay = 1500 + (Math.random() * 1000); // Random delay between 1.5s and 2.5s
         setTimeout(() => {
           setLoadingStates(prev => ({
@@ -394,7 +394,7 @@ const Development = () => {
                         <p>{tool.description}</p>
                         <button className="custom-btn btn-sm" style={{ 
                           padding: '8px 16px', 
-                          fontSize: '0.875rem' 
+                          fontSize: '0.875rem' ,
                         }}>
                           Learn More <FontAwesomeIcon icon={faArrowRight} className="ms-2" style={{
                             transition: 'transform 0.3s ease'
