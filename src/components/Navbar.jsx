@@ -88,13 +88,13 @@ const Navbar = () => {
           </li>
           {/* Social Icons */}
           <li className='justify-content-center'>
-            <a onClick={() => handleExternalLink('https://wa.me/your-whatsapp-number')} href="#" className="btn custom-btn nav-btn">
+            <a onClick={() => handleExternalLink('https://wa.me/+923484149332')} href="#" className="btn custom-btn nav-btn">
               <FontAwesomeIcon icon={faWhatsapp} className="me-2" /> Whatsapp
             </a>
-            <a onClick={() => handleExternalLink('https://github.com/your-github-username')} href="#" className="btn custom-btn nav-btn">
+            <a onClick={() => handleExternalLink('https://github.com/alymehroz512')} href="#" className="btn custom-btn nav-btn">
               <FontAwesomeIcon icon={faGithub} className="me-2" /> Git Hub
             </a>
-            <a onClick={() => handleExternalLink('https://linkedin.com/in/your-linkedin-profile')} href="#" className="btn custom-btn nav-btn">
+            <a onClick={() => handleExternalLink('https://www.linkedin.com/in/ali-mehroz-a1ba9a226/')} href="#" className="btn custom-btn nav-btn">
               <FontAwesomeIcon icon={faLinkedin} className="me-2" /> Linkdin
             </a>
           </li>

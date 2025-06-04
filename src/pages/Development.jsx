@@ -352,7 +352,6 @@ const Development = () => {
           width: '60%', 
           height: '24px', 
           marginBottom: '10px',
-          fontFamily: "'Poppins', Arial, sans-serif",
           fontSize: '1.2rem',
           fontWeight: '500'
         }}></div>
